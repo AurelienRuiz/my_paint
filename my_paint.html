@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'/>
+    <script src="https://kit.fontawesome.com/fa69700fc5.js"></script>
+    <link rel="stylesheet" href="css/my_paint.css">
+    <title>My_Paint</title>
+</head>
+
+<body>
+    <main>
+        <nav class="toolbar">
+            <div class="title">
+                <h1>My Paint</h1>
+            </div>
+            <ul>
+                <p>Color :</p>
+                <li>
+                    <input type="color" id="color-picker">
+                </li>
+                <p>Tools :</p>
+                <li>
+                    <button id="tool-eraser" class="tool"><i class="fas fa-eraser"></i></button>
+                    <button id="tool-pen" class="tool active"><i class="fas fa-pen"></i></button>
+                    <button id="tool-line" class="tool"><i class="fas fa-pencil-ruler"></i></button>
+                    <button id="tool-rect1" class="tool"><i class="fas fa-square"></i></button>
+                    <button id="tool-rect2" class="tool"><i class="far fa-square"></i></button>
+                    <br>
+                    <button id="tool-circle1" class="tool"><i class="fas fa-circle"></i></button>
+                    <button id="tool-circle2" class="tool"><i class="far fa-circle"></i></button>
+                    <button id="clear"><i class="fas fa-trash-alt"></i></button>
+                </li>
+                <p>Size :</p>
+                <li>
+                    <input type="range" name="size" id="size" min="2" max="70">
+                    <div>
+                        Value : <span id="range-value"></span>
+                    </div>
+                </li>
+                <p>Edit :</p>
+                <li>
+                    <button id="save"><i class="fas fa-save"></i></button>
+                    <br>
+                    <input type="file" id="open-file" accept="image/png, image/jpeg">
+                </li>
+            </ul>
+        </nav>
+        <canvas id="canvas" width="1000" height="700"></canvas>
+    </main>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="js/my_paint.js"></script>
+</body>
+
+</html>
