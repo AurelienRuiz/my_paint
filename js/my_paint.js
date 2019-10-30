@@ -15,12 +15,10 @@ $(document).ready(function () {
     output.html($(this).val());
     size = $(this).val();
   });
-
   $("#size").oninput = function () {}
   $('#color-picker').change(function () {
     color = $(this).val();
   })
-
   $('.tool').click(function () {
     $('.tool').removeClass('active');
     $(this).addClass('active');
@@ -165,32 +163,10 @@ $(document).ready(function () {
     context.clearRect(0, 0, canvas.width(), canvas.height());
   }
 
-  $("#clear").click(function () {
-    clear_canvas();
-  });
-
-  // $("#save").click(function () {
-  //   var canvas = $('#canvas');
-  //   var img = canvas[0].toDataURL("image/png");
-  //   var w=window.open('about:blank','image from canvas');
-  //   w.document.write('<img src="' + img + '"/>');
-  // });
-
-  $('#open-file').change(function() {
-    var img = $('#open-file').val();
-    setTimeout(function() {
-      context.drawImage(img, 10, 10);
-    }, 1000);
-  })
-
-  $('#save').click(function(){
-    download(canvas, 'canvas.png');
-  })
-
   function download(canvas, filename) {
     var lnk = document.createElement('a'), e;
     lnk.download = filename;
-    lnk.href = canvas.toDataURL("image/png, base64");
+    lnk.href = canvas[0].toDataURL("image/png, base64");
     if (document.createEvent) {
       e = document.createEvent("MouseEvents");
       e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
@@ -199,4 +175,29 @@ $(document).ready(function () {
       lnk.fireEvent("onclick");
     }
   }
+
+  var imageLoader = document.getElementById('open-file');
+  imageLoader.addEventListener('change', handleImage, false);
+  
+  function handleImage(e){
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = function(){
+            canvas[0].width = img.width;
+            canvas[0].height = img.height;
+            context.drawImage(img,0,0);
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);     
+  }
+
+  $("#clear").click(function () {
+    clear_canvas();
+  });
+
+  $('#save').click(function(){
+    download(canvas, 'canvas.png');
+  })
 });
