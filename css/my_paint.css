@@ -12,6 +12,8 @@ main {
 }
 
 .title {
+    font-family: 'Pacifico', cursive;
+    font-size: 26px;
     color: #FFFFFF;
     text-align: center;
     border-bottom: solid black 4px;
@@ -27,6 +29,7 @@ ul {
 }
 
 button {
+    cursor: pointer;
     border: none;
     background-color: white;
     border-radius: 10px;
@@ -34,7 +37,16 @@ button {
     padding: 10px 15px;
 }
 
+button:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#div-range-value {
+    color: #FFFFFF;
+}
+
 #color-picker {
+    cursor: pointer;
 	border: none;
 	width: 80px;
     height: 60px;
@@ -45,35 +57,55 @@ button {
 #size {
     -webkit-appearance: none;
     width: 100%;
-    height: 25px;
+    height: 15px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-  }
+}
   
 #size:hover {
     opacity: 1;
-  }
+}
   
 #size::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
-    height: 25px;
+    height: 15px;
     background: #1695C8;
     cursor: pointer;
-  }
+}
   
 #size::-moz-range-thumb {
     width: 25px;
     height: 25px;
     background: #1695C8;
     cursor: pointer;
-  }
+}
+
+#label-file {
+    cursor: pointer;
+	border: none;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+#label-file:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#open-file {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
 
 canvas {
+    cursor: url("pen.png") 0 0, auto;
     margin-left: 10px;
     background-color: white;
 }

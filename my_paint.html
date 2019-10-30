@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'/>
     <script src="https://kit.fontawesome.com/fa69700fc5.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/my_paint.css">
     <title>My_Paint</title>
 </head>
@@ -32,19 +33,20 @@
                     <br>
                     <button id="tool-circle1" class="tool"><i class="fas fa-circle"></i></button>
                     <button id="tool-circle2" class="tool"><i class="far fa-circle"></i></button>
+                    <button id="tool-text" class="tool"><i class="fas fa-font"></i></button>
                     <button id="clear"><i class="fas fa-trash-alt"></i></button>
                 </li>
                 <p>Size :</p>
                 <li>
-                    <input type="range" name="size" id="size" min="2" max="70">
-                    <div>
+                    <input type="range" name="size" id="size" min="2" max="50">
+                    <div id="div-range-value">
                         Value : <span id="range-value"></span>
                     </div>
                 </li>
                 <p>Edit :</p>
                 <li>
                     <button id="save"><i class="fas fa-save"></i></button>
-                    <br>
+                    <label id="label-file" for="open-file">Import image</label>
                     <input type="file" id="open-file" accept="image/png, image/jpeg">
                 </li>
             </ul>
