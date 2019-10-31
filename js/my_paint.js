@@ -7,9 +7,9 @@ $(document).ready(function () {
   var cursorX, cursorY;
   var size = $("#size").val();
   var color = $('#color-picker').val();
+  var output = $("#range-value");
   context.lineJoin = 'round';
   context.lineCap = 'round';
-  var output = $("#range-value");
   output.html($('#size').val());
   $('#size').on("input", function () {
     output.html($(this).val());
@@ -136,7 +136,19 @@ $(document).ready(function () {
   canvas.mousemove(function (e) {
     switch ($('.active').attr('id')) {
       case "tool-eraser":
+          canvas.css({
+            "cursor": "url('css/eraser.cur'), auto"
+          })
+          if (painting) {
+            cursorX = (e.pageX - this.offsetLeft) - 10;
+            cursorY = (e.pageY - this.offsetTop) - 10;
+            drawLine();
+          }
+          break;
       case "tool-pen":
+        canvas.css(
+          "cursor", "url(css/pen.png), auto"
+        )
         if (painting) {
           cursorX = (e.pageX - this.offsetLeft) - 10;
           cursorY = (e.pageY - this.offsetTop) - 10;
@@ -164,7 +176,8 @@ $(document).ready(function () {
   }
 
   function download(canvas, filename) {
-    var lnk = document.createElement('a'), e;
+    var lnk = document.createElement('a'),
+      e;
     lnk.download = filename;
     lnk.href = canvas[0].toDataURL("image/png, base64");
     if (document.createEvent) {
@@ -178,26 +191,24 @@ $(document).ready(function () {
 
   var imageLoader = document.getElementById('open-file');
   imageLoader.addEventListener('change', handleImage, false);
-  
-  function handleImage(e){
+
+  function handleImage(e) {
     var reader = new FileReader();
-    reader.onload = function(event){
-        var img = new Image();
-        img.onload = function(){
-            canvas[0].width = img.width;
-            canvas[0].height = img.height;
-            context.drawImage(img,0,0);
-        }
-        img.src = event.target.result;
+    reader.onload = function (event) {
+      var img = new Image();
+      img.onload = function () {
+        context.drawImage(img, 0, 0);
+      }
+      img.src = event.target.result;
     }
-    reader.readAsDataURL(e.target.files[0]);     
+    reader.readAsDataURL(e.target.files[0]);
   }
 
   $("#clear").click(function () {
     clear_canvas();
   });
 
-  $('#save').click(function(){
+  $('#save').click(function () {
     download(canvas, 'canvas.png');
   })
 });

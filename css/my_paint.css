@@ -105,7 +105,6 @@ button:hover {
 }
 
 canvas {
-    cursor: url("pen.png") 0 0, auto;
     margin-left: 10px;
     background-color: white;
 }
